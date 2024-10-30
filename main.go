@@ -51,7 +51,7 @@ func checkForUnwrappedErrors(ret *ast.ReturnStmt, fset *token.FileSet, path stri
 		if id, ok := result.(*ast.Ident); ok && id.Name == "err" {
 			line := fset.Position(id.Pos()).Line
 			context := inferContextFromFunction(ret, rootNode)
-			suggestion := fmt.Sprintf("%s:%d: consider wrapping error: fmt.Errorf(\"%s: %%w\", err)", path, line, context)
+			suggestion := fmt.Sprintf("%s:%d:fmt.Errorf(\"%s: %%w\", err)", path, line, context)
 			fmt.Println(suggestion)
 		}
 	}
